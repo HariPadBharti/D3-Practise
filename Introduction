@@ -28,7 +28,6 @@ Cleaning file: expenses_cleaning.ipynb
 Useful columns: Location, Country, Value and Time 
 Location gives the country code which can match with geojson file’s country code to draw the Choropleth map, Values represents the value pf educational investment with respect to the GDP of the country. Taking World bank data and collectively representing all countries in UN classification of being developed, developing etc according to the economy of the region, values can help get draw a collective graph for such classified countries. Time represents the corresponding data tear from 2003-2013.
 
-
 Proposed Map Description
 1.
 Description: Analyzing Data from 2003- 2013, we get trend of inbound students in respective countries. Of all the available data, USA tops the list with 784427 students. 
