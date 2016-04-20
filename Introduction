@@ -1,0 +1,49 @@
+Project Design
+Table of Contents:-
+Datasets: 
+Uploaded on github : “https://github.com/HariPadBharti/Design”
+Cleaning data by Python using Pandas library, 
+1.Students Inbound data
+Source: “http://data.uis.unesco.org/Index.aspx?queryid=120#"
+Output: inbound.csv,
+Link : https://github.com/HariPadBharti/Design/blob/master/inbound.csv
+Cleaning file: inbound_cleaning.ipynb
+Useful columns: Location, Country, Value and Time 
+Location gives the country code which can match with geojson file’s country code to draw the Choropleth map, Values represents the total inbound students and Time represents data of year from 2003 to 2013.
+
+2.Education Data
+Literacy : Primary level of Education  
+Source: "http://data.uis.unesco.org/Index.aspx?queryid=120#" 
+Output after cleaning : lit_per.csv  
+Link :https://github.com/HariPadBharti/Design/blob/master/lit_per.csv
+Cleaning file: literacydata_cleaning.ipynb
+Useful columns: Location, Country, Value and Time 
+Location gives the country code which can match with geojson file’s country code to draw the Choropleth map, Values represents percentage of population having primary education while Time represents the year of data.
+
+3.Expense on Education Data
+Source: "http://data.uis.unesco.org/Index.aspx?queryid=120#" 
+Output after cleaning : expense.csv
+Link: https://github.com/HariPadBharti/Design/blob/expense.csv
+Cleaning file: expenses_cleaning.ipynb
+Useful columns: Location, Country, Value and Time 
+Location gives the country code which can match with geojson file’s country code to draw the Choropleth map, Values represents the value pf educational investment with respect to the GDP of the country. Taking World bank data and collectively representing all countries in UN classification of being developed, developing etc according to the economy of the region, values can help get draw a collective graph for such classified countries. Time represents the corresponding data tear from 2003-2013.
+
+
+Proposed Map Description
+1.
+Description: Analyzing Data from 2003- 2013, we get trend of inbound students in respective countries. Of all the available data, USA tops the list with 784427 students. 
+
+Desired Visual representation is by World Choropleth map with bar chart to show last 10 years’ trend on mouse hover or on zoom.
+
+2. 
+Description: Analyzing Data from 2003- 2013, we get trend of primary education of students in respective countries. 
+
+Desired Visual representation is by World Choropleth map with bar chart to show last 10 years’ trend on mouse hover or on zoom.
+
+3.
+Description: Analyzing Data from 2003- 2013, we get trend of investment on education in respective countries. According to the UN world division, we get data of developed countries (classification available on world bank official website) and corresponding educational investment. Interesting relation of educational investment and economic growth can be understood since the data provided as investment is percentage of countries GDP. Hence, we can get a relational trend of educational reform and economy of the region.
+
+Desired Visual representation is by World Cartograms map with separate bar charts to show last 10 years’ trend on mouse hover or on zoom.
+
+
+
