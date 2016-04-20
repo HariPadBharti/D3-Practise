@@ -1,7 +1,6 @@
 # Project on D3.js
 
 Analysis of World Education, Economy and their interrelation 
-By: Hari Pad Bharti 
 
 Dataset used: UNESCO public dataset of world education. Dataset includes 
                       (Link: http://data.uis.unesco.org/Index.aspx?queryid=120#)
