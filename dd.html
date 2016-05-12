@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+	<head>
+    <h3 style = "color:blue"> HARI PAD BHARTI </h3>
+<h4 class = "cls"> 01591571 <h4>
+
+<h4 class = "cls" > Data Visualization CIS 602-01 </h4>
+<h3 class = "cls1"> Final Project </h3>
+
+
+	 <meta charset="utf-8">
+        <link href="https://d3-geomap.github.io//d3-geomap/css/d3.geomap.css" rel="stylesheet">
+        <script src="https://d3-geomap.github.io//d3-geomap/vendor/d3.geomap.dependencies.min.js"></script>
+        <script src="https://d3-geomap.github.io//d3-geomap/js/d3.geomap.min.js"></script>
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	</head>
+  <style>
+  .axis
+    {font: 10px sans-serif;}
+    .axis path,
+    .axis line {fill: none;
+      stroke: #000; }
+      
+    
+    
+    .barchart text
+    {
+      fill: white;
+      font-family: sans-serif;
+      font-size: 15px;
+      text-anchor: end;
+    }
+    
+    .d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+    }        
+    .d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+    }
+
+    .d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+    }
+
+    .bar.highlight {
+    background: MistyRose;
+    }
+
+    .state {
+    fill: green;
+    .s1{ font-style: bold; }
+    .s2{ font-style: italic;}
+
+    .state.highlight {
+    fill: red;
+    stroke: red;
+    stroke-width: 4px;
+  }
+  </style>
+
+<h1>Top Countries Having Maximum Inbound Students b/w 2003-2013</h1>
+
+
+<div id="chart"></div>
+  <script type="text/javascript">
+var filteredData;
+
+var rows;
+//chrome.exe --allow-file-access-from-files
+
+d3.csv("https://raw.githubusercontent.com/HariPadBharti/D3-Project/master/inbound.csv", function(load) {
+  rows = load;
+  extract_data();
+
+});
+
+
+
+function extract_data() {
+var Val;
+var a1;
+var count;
+Val = rows;
+console.log(Val[0]);
+var top_data; 
+top_data = rows[0];
+//Val[0]=rows[0];
+console.log(rows);
+console.log(Val[0].Value);
+for(var i=0; i<rows.length; i++)
+  {
+    a1=rows[i].Value;
+    for(var j=i+1; j<rows.length; j++)
+    {
+      
+      if(rows[i].Country==rows[j].Country && rows[i].Value<rows[j].Value)
+      {
+        Val[i].Value = rows[j].Value;
+        
+      }
+      
+    }
+  }
+  filteredData = rows.filter(function(d) 
+{ 
+        
+        if( d["Time"] == "2013")
+        {
+
+         
+         
+            return d;
+         }
+
+    })
+
+console.log(filteredData);
+  var filteredData1 = rows.filter(function(d) 
+{ 
+        
+        if( d["LOCATION"] == "USA")
+        {
+
+         
+         
+            return d;
+         }
+
+    })
+
+console.log(filteredData1);
+
+
+
+//console.log(sorted);
+//d3.sort(filteredData);
+
+var bardata = [];
+for(var i=0; i<filteredData1.length;i++)
+{
+
+}
+//top_data.sort(d3.ascending);
+//console.log(filteredData); 
+
+
+
+  
+  
+var margin = {top: 20, right: 20, bottom: 40, left: 40};
+var width = 600 - margin.left - margin.right;
+var height = 500 - margin.top - margin.bottom;
+
+svg = d3.select("#chart").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+var y = d3.scale.linear().range([height, 0]);
+
+y.domain([0,8])
+var yAxis = d3.svg.axis().scale(y).orient("left");
+svg.append("g")
+  .attr("class", "axis")
+  .call(yAxis)
+  .append("text")
+  .attr("y", -30)
+  .attr("x", -80)
+  .style("text-anchor","end")
+  .attr("transform","rotate(-90)")
+  .text("No of Inbound Students (In 100 thousands)")
+
+var bardata = [];
+  var valb = []
+for(var i=0; i<filteredData.length;i++)
+{
+bardata[i] = filteredData[i].LOCATION;
+valb = filteredData[i].Value;
+}
+console.log(bardata);
+var x = d3.scale.ordinal().rangeRoundBands([0, width]).domain(bardata);
+
+console.log(x.domain());
+//x.domain([0,7])
+var xAxis = d3.svg.axis().scale(x).orient("bottom");
+svg.append("g")
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," +(height)+ ")")
+  .call(xAxis)
+  .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("transform", "rotate(-90)" );
+
+//.outerTickSize(0)
+
+
+    
+
+//var data = [20,30,40,50,60,70];
+
+
+svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("transform", "rotate(-90)" );
+
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) { 
+    return "<span style='color:red'>" + d.LOCATION+ " : " + d.Value +"</span>";
+  });
+  
+svg.selectAll("rect")
+  .data(filteredData)
+  .enter()
+  .append("rect")
+  .attr("x",  function(d,i){ console.log(x(d.LOCATION),d.LOCATION); return x(d.LOCATION);})
+  .attr("y", function(d,i) { return y(d.Value/100000) })
+  .attr("width", 110)
+  .attr("height", function(d) { return height - y(d.Value/100000); })
+  .attr("fill", function(d) 
+  { if(d.Value>=400000) 
+  return "#fee5d9"; 
+  else if(d.Value>=300000)
+    return "#fcae91";
+  else if(d.Value>=240000)
+    return "#fb6a4a";
+  else
+    return "#de2d26";
+  })
+  .on('mouseover',tip.show)
+  .on('mouseout', tip.hide)
+
+  .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("transform", "rotate(0)" );
+
+    
+  
+      
+svg.call(tip);
+
+var bar = d3.selectAll("#rect>svg>g")
+
+    var abc = bar.selectAll("rect");
+    abc.on("mousemove", function(){
+      d3.select(this).classed("state", true)
+      var county = d3.select(this).datum().LOCATION;
+
+      d3.select("#map").selectAll("rect").filter(function(d){
+       console.log(); return d.LOCATION == Country;
+      })
+      .classed("state", true);
+    })
+
+abc.on("mouseout", function(){
+
+      d3.select(this).classed("state", false)
+      var county = d3.select(this).datum().County;
+
+      d3.select("#map").selectAll("rect").filter(function(d){
+        return d.LOCATION == Country;
+      })
+      .classed("state", false);
+    })
+
+        
+console.log(rows);
+//-------------
+
+
+var margin = {top: 20, right: 20, bottom: 40, left: 40};
+var width = 850 - margin.left - margin.right;
+var height = 500 - margin.top - margin.bottom;
+
+svg = d3.select("#chart").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+var y = d3.scale.linear().range([height, 0]);
+
+y.domain([0,8])
+var yAxis = d3.svg.axis().scale(y).orient("left");
+svg.append("g")
+  .attr("class", "axis")
+  .call(yAxis)
+  .append("text")
+  .attr("y", -30)
+  .attr("x", -80)
+  .style("text-anchor","end")
+  .attr("transform","rotate(-90)")
+  .text("No of Inbound Students (In 100 thousands)")
+
+var bardata1 = [];
+  var valb = []
+for(var i=0; i<filteredData1.length;i++)
+{
+bardata1[i] = filteredData1[i].Time;
+valb = filteredData1[i].Value;
+}
+//console.log(filteredData1);
+var x = d3.scale.ordinal().rangeRoundBands([0, width]).domain(bardata1);
+
+console.log(x.domain());
+//x.domain([0,7])
+var xAxis = d3.svg.axis().scale(x).orient("bottom");
+svg.append("g")
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," +(height)+ ")")
+  .call(xAxis)
+  .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("transform", "rotate(-90)" );
+
+//.outerTickSize(0)
+
+
+    
+
+svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("transform", "rotate(-90)" );
+
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) { 
+    return "<span style='color:red'>" + d.LOCATION+ " : " + d.Value +"</span>";
+  });
+  colors = d3.scale.category20()
+svg.selectAll("rect")
+  .data(filteredData1)
+  .enter()
+  .append("rect")
+  .attr("x",  function(d,i){ console.log(x(d.Time),d.Time); return x(d.Time);})
+  .attr("y", function(d,i) { return y(d.Value/100000) })
+  .attr("width", 50)
+  .attr("height", function(d) { return height - y(d.Value/100000); })
+  .attr("fill",function(d,i){return colors(i)})
+  .on('mouseover',tip.show)
+  .on('mouseout', tip.hide)
+
+  .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("transform", "rotate(0)" );
+
+    svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 10 - (margin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px") 
+        .style("text-decoration", "underline")  
+        .text("US INBOUND STUDENTS YEARWISE");
+
+  
+      
+svg.call(tip);
+
+var bar = d3.select("rect>map")
+
+    var abc = bar.selectAll("rect");
+    abc.on("mousemove", function(){
+      d3.select(this).classed("state", true)
+      var county = d3.select(this).datum().LOCATION;
+
+      d3.select("chart").selectAll("rect").filter(function(d){
+       console.log(); return d.LOCATION == Country;
+      })
+      .classed("state", true);
+    })
+
+abc.on("mouseout", function(){
+
+      d3.select(this).classed("state", false)
+      var county = d3.select(this).datum().County;
+
+      d3.select("chart").selectAll("rect").filter(function(d){
+        return d.LOCATION == Country;
+      })
+      .classed("state", false);
+    })
+
+  
+}
+
+
+
+//attr("y", function(d,i) { return y(d.q4/300000) })
+    
+  </script>
+</div>
+
+
+	</body>	
+</html>
