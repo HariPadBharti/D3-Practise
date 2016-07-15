@@ -29,7 +29,6 @@ Techniques: -
 
 
 2.	Representation of educational investment on world map using Cartograms to identify the current trend of educational reform investments.
-3.	
 
 3.	Represent the trend of literacy in top 5 developing countries using bar chart to show the interrelation of economic and educational. Also represent last 10 years of inbound quantity based on result of country having maximum inbound students.
 
