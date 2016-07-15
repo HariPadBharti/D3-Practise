@@ -26,8 +26,14 @@ Possible Questions: -
 
 Techniques: - 
 1.	Using Choropleth map, drawing distribution of literacy on global scale based on UNESCO data to identify countries having most and the least literacy rate.
+
+
 2.	Representation of educational investment on world map using Cartograms to identify the current trend of educational reform investments.
-3.	Represent the trend of literacy in top 5 developing countries using bar chart to show the interrelation of economic reform and educational reform. 
+3.	
+
+3.	Represent the trend of literacy in top 5 developing countries using bar chart to show the interrelation of economic and educational. Also represent last 10 years of inbound quantity based on result of country having maximum inbound students.
+
+
 
 Findings and validation of results can be concluded from the visualization found that can showcase major trends of education and economy on global scale. Taking gravity and significance of literacy and education on global scale, this project can be useful to explore hidden trends and co-relation of different aspects of world education and related implications.   
 
